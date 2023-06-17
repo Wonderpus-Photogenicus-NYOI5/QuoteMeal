@@ -53,7 +53,7 @@ const SignupForm = (props) => {
         </label>
         <br></br>
         {wrongPassword && 
-        <p style={color = 'red'}>Passwords do not match</p>}
+        <p style={{color: 'red'}}>Passwords do not match</p>}
         <label>
           Password: <input name="password" value={password} onChange={e => handleChange(e)} />
         </label>
