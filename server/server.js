@@ -39,7 +39,8 @@ app.get('/api/test', (req, res) => {
 // ********Routes********
 // login or signup
 app.post('/api/user/login', userController.login, (req, res) => {
-    console.log('request received')
+    console.log('request received');
+    if (!res.locals.user) return res.status(404).send(res.locals.user);
     return res.status(200).send(res.locals.user)
 })
 
