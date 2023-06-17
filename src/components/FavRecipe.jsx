@@ -31,6 +31,10 @@ const FavRecipe = (props) => {
       console.log(err);
     }
   }
+  const ingredientArray = [];
+  for (let i in ingredients) {
+      ingredientArray[i] = <p> {ingredients[i].amount} {ingredients[i].name} </p>
+  }
   return (
     <div className='card w-72 flex flex-col justify-center items-center border-solid border-slate-500 border-2'>
       <img src={image} className='h-64 w-64 object-cover' />
@@ -38,7 +42,7 @@ const FavRecipe = (props) => {
         <p> {name} </p>
         <p> {category}</p>
         <p> {region} </p>
-        <p> {ingredients} </p>
+        {ingredientArray}
         <p> {instructions}</p>
         <button onClick={handleClick} className='btn text-center'> Delete </button>
       </div>
