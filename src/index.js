@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import App from './App.jsx';
 import store from './store';
 
+import styles from './styles/style.scss';
+
 const root = createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
