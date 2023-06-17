@@ -7,7 +7,6 @@ import React from 'react'
 const HomeContainer = (props) => {
     return (
         <div>
-            <Navbar />
             <h1> QuoteMeal </h1>
             <RecipeInput />
             <Quote />

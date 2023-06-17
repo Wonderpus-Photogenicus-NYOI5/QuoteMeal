@@ -25,7 +25,7 @@ const MainRecipe = (props) => {
         <div>
             <div>
                 <image src="image"></image>
-                <button onClick={ADDTOFAVORITES}>Add to Favorites</button>
+                <button onClick={handleClick}>Add to Favorites</button>
             </div>
         </div>
     )
