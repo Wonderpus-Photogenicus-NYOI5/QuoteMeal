@@ -1,9 +1,12 @@
 import React from 'react';
 import { deleterecipe } from '../reducers/userreducer.js';
+import { useDispatch } from 'react-redux'
+
 
 const FavRecipe = (props) => {
-    const { name, category, region, instructions, image, video, ingredients, index, dispatch } = props
-
+    const dispatch = useDispatch();
+    const { username, name, category, region, instructions, image, video, ingredients, index } = props
+    // dispatch
     async function handleClick(e) {
         //e.preventDefault()
         try {

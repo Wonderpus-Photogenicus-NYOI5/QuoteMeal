@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 // user information on recipe
 const initialState = {
     username: '',
-    recipes: [],
+    recipes: [{name: "recipe", category: "recipe", region: "recipe", instructions: "recipe", image:"https://www.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg", video: "recipe", ingredients:"recipe" }],
     currentRecipe: '',
     ingredient: '',
 }
