@@ -12,6 +12,12 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        setUsername: (state, action) => {
+            state.username = action.payload;
+        },
+        setRecipes: (state, action) => {
+            state.recipes = action.payload;
+        },
         addRecipe: (state, action) => {
             state.recipes.push(action.payload)
         },
@@ -29,5 +35,5 @@ export const userSlice = createSlice({
     },
 })
 
-export const { addRecipe, deleterecipe, updateIngredient, updateCurrent} = userSlice.actions
+export const { setUsername, setRecipes, addRecipe, deleterecipe, updateIngredient, updateCurrent} = userSlice.actions
 export default userSlice.reducer

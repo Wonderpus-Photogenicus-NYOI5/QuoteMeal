@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUsername, loginPassword, updateLoggedIn, updateNoMatch, clearState } from '../reducers/loginreducer';
+import { setUsername, setRecipes } from '../reducers/userreducer';
 
 const LoginForm = (props) => {
     const dispatch = useDispatch();
@@ -28,7 +29,8 @@ const LoginForm = (props) => {
         if (!data) {
             dispatch(updateNoMatch(true));
         } else {
-            // dispatch userreducer to update user state
+            dispatch(setUsername(data.username));
+            dispatch(setRecipes(data.recipes));
             dispatch(clearState());
             return navigate('/');
         }
