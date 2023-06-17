@@ -7,9 +7,7 @@ const Navbar = (props) => {
   return (
     <nav>
       <Link to='/'>Home</Link>
-      {loggedIn &&
-        <Link to='/favorites'>Favorite Recipes</Link>
-      }
+      <Link to='/favorites'>Favorite Recipes</Link>
       <Link to='/login'>Login</Link>
     </nav>
   )

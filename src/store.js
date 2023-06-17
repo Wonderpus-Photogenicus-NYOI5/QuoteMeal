@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userreducer from './reducer/userreducer.js';
-import loginreducer from './reducer/loginreducer.js';
-import testreducer from './reducer/testreducer.js';
+import userreducer from './reducers/userreducer.js';
+import loginreducer from './reducers/loginreducer.js';
+import testreducer from './reducers/testreducer.js';
 
 
 const store = configureStore({
   reducer: {
     login: loginreducer,
-    posts: postsreducer,
+    user: userreducer,
     test: testreducer
   },
 });
