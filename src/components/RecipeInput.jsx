@@ -54,10 +54,8 @@ const RecipeInput = (props) => {
         })
   
       }
-   
       // Final iteration of recipe ready to go!
     }
-    console.log(ingredientList);
      
     const readyRecipe = {
       name: strMeal,
