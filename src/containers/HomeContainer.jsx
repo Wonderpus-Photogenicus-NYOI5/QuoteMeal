@@ -1,13 +1,11 @@
-import RecipeInput from "../components/RecipeInput.jsx"
-import MainRecipe from "../components/MainRecipe.jsx"
-import Quote from "../components/Quote.jsx"
-import React from 'react';
-
+import RecipeInput from '../components/RecipeInput.jsx'
+import MainRecipe from '../components/MainRecipe.jsx'
+import Quote from '../components/Quote.jsx'
+import React from 'react'
+// import {useEffect} from 'react'
 
 const HomeContainer = (props) => {
-  return (
-    <div></div>
-  )
+    return <div></div>
 }
 
 export default HomeContainer

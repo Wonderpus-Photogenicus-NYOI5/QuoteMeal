@@ -1,6 +1,9 @@
 import React from 'react'
 
 const FavRecipe = (props) => {
+    const { name, category, region, instructions, image, video, ingredients } =
+        props
+
     async function handleClick(e) {
         e.preventDefault()
 
@@ -19,6 +22,8 @@ const FavRecipe = (props) => {
 
     return (
         <div>
+            <p>name: {name} </p>
+            <p>category: {category}</p>
             <button onClick={handleClick}> Delete </button>
         </div>
     )
