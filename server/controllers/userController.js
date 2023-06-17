@@ -1,17 +1,21 @@
-const User = require('./models/User');
+const User = require('../models/User');
 const userController = {}
 const bcrypt = require('bcrypt');
 
 
 userController.createUser = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    // console.log('body of request', req.body);
+    const { username, password, firstName, lastName, email } = req.body;
     if (username && password) {
+      
       const salt = await bcrypt.genSaltSync(10);
       const bcpassword = await bcrypt.hashSync(password, salt);
-      const updatedUser = {username, bcpassword}
-      const newUser = User.create(updatedUser);
+      const updatedUser = {username, firstName, lastName, email, password: bcpassword}
+      const newUser = await User.create(updatedUser);
+      console.log(newUser);
       res.locals.newUser = newUser;
+      // console.log('SUCESSFUL IN CREATE USER, maybe')
       return next();
     }
     next("One of username or password fields is missing");
@@ -22,6 +26,7 @@ userController.createUser = async (req, res, next) => {
 }
 
 userController.addFavRecipe = async (req, res, next) => {
+  // console.log('IN FAV RECIPE');
   try {
     const { username, recipe } = req.body;
     const userAddFav = await User.findOneAndUpdate(
@@ -67,6 +72,7 @@ userController.login = async (req, res, next) => {
       next("user not found");
     }
     const compare = await bcrypt.compare(password, result.password);
+    // console.log('SUCESSFUL LOG IN');
     if (compare) {
       res.locals.user = result;
       return next();
