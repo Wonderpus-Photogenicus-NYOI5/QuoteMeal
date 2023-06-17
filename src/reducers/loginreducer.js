@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = { 
   username: '',
   password: '',
-  loggedIn: false,
   noMatch: false,
 }
 
@@ -17,9 +16,6 @@ export const loginSlice = createSlice({
     loginPassword: (state, action) => {
       state.password = action.payload;
     },
-    updateLoggedIn: (state, action) => {
-      state.loggedIn = action.payload;
-    },
     updateNoMatch: (state, action) => {
       state.noMatch = action.payload;
     },
@@ -29,5 +25,5 @@ export const loginSlice = createSlice({
   }
 });
 
-export const { loginUsername, loginPassword, updateLoggedIn, updateNoMatch, clearState } = loginSlice.actions;
+export const { loginUsername, loginPassword, updateNoMatch, clearState } = loginSlice.actions;
 export default loginSlice.reducer;

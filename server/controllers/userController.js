@@ -70,28 +70,29 @@ userController.deleteRecipe = async (req, res, next) => {
 }
 
 userController.login = async (req, res, next) => {
-  try {
-    console.log('in userController.login', req.body)
-    const { username, password } = req.body
-    const result = await User.findOne({ username });
-    if (!result) {
-      return next('user not found')
-    }
-    const compare = await bcrypt.compare(password, result.password)
-    // console.log('SUCESSFUL LOG IN');
-    if (compare) {
-      res.locals.user = { 'username': result.username, 'recipes': result.favRecipes };
-      return next()
-    } else {
-      res.locals.user = false;
-      return next()
-    }
-  } catch (err) {
-    return next({
-      log: 'Express error handler caught caught an error in userController.login',
-      status: 400,
-      message: { err: err }
-    })
+    try {
+        console.log('in userController.login', req.body)
+        const { username, password } = req.body
+        const result = await User.findOne({ username });
+        console.log(result)
+        if (!result) {
+           return next('user not found')
+        }
+        const compare = await bcrypt.compare(password, result.password)
+        // console.log('SUCESSFUL LOG IN');
+        if (compare) {
+            res.locals.user = { 'username': result.username, 'recipes': result.favRecipes };
+            return next()
+        } else {
+            res.locals.user = false;
+            return next()
+        }
+    } catch (err) {
+        return next({
+            log: 'Express error handler caught caught an error in userController.login',
+            status: 400,
+            message: {err: err}
+       })
   }
 }
 
