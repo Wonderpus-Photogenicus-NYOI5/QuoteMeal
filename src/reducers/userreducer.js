@@ -14,6 +14,7 @@ export const userSlice = createSlice({
         addRecipe: (state, action) => {
             state.recipes.push(action.payload)
         },
+        
         //action: (state) = {}
     },
 })
