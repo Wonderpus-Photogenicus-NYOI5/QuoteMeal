@@ -5,7 +5,9 @@ const ingredientURL = 'https://www.themealdb.com/api/json/v1/1/filter.php?i='
 const recipeURL = 'https://themealdb.com/api/json/v1/1/lookup.php?i='
 
 const RecipeInput = (props) => {
+    const ingredient = useSelector((state) => state.user.ingredient)
     const current = useSelector((state) => state.user.currentRecipe)
+
     const dispatch = useDispatch()
 
     function handleChange(e) {
@@ -16,7 +18,7 @@ const RecipeInput = (props) => {
     async function handleClick() {
         e.preventDefault()
         //parse ingredient
-        const ingredient = current.replace(/ /g, _)
+        const ingredient = ingredient.replace(/ /g, _)
         //fetch recipe list and parse data
         const data = await fetch(ingredientURL + ingredient)
         const recipeList = await data.json()
@@ -25,9 +27,10 @@ const RecipeInput = (props) => {
             recipeList.meals[
                 Math.floor(Math.random(recipeList.meals.length) * 100)
             ].idmeal
-        // lookup full recipe with meal id and parse
+        // lookup full recipe with meal id and parse the recipe object
         const recipe = await fetch(recipeURL + id)
         const parsedRecipe = await recipe.meals[0].json()
+        //deconstruct recipe obj to get required  props
         const {
             strMeal,
             strCategory,
@@ -36,10 +39,26 @@ const RecipeInput = (props) => {
             strMealThumb,
             strYoutube,
         } = parsedRecipe
+        // create ingredients list property by pushing an object containing ingredient and corresponding measurement
         const ingredientList = []
         for (let i = 1; i < 20; i++) {
-            if (parsedRecipe[`StrIngredient${i}`]) ingredient
+            if (!parsedRecipe[`StrIngredient${i}`]) break
+            ingredientList.push({
+                name: parsedRecipe[`strIngredient${i}`],
+                amount: parsedRecipe[`strMeasure${i}`],
+            })
+            // Final iteration of recipe ready to go!
         }
+        const readyRecipe = {
+            name: strMeal,
+            category: strCategory,
+            region: strArea,
+            instructions: strInstructions,
+            image: strMealThumb,
+            video: strYoutube,
+            ingredients: ingredientList,
+        }
+        dispatch({ type: updateCurrent, payload: readyRecipe })
     }
 
     return (

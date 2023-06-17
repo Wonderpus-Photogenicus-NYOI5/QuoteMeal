@@ -23,10 +23,7 @@ const MainRecipe = (props) => {
 
     return (
         <div>
-            <div>
-                <image src="image"></image>
-                <button onClick={handleClick}>Add to Favorites</button>
-            </div>
+            {/* <button onClick={ADDTOFAVORITES}>Add to Favorites</button> */}
         </div>
     )
 }
