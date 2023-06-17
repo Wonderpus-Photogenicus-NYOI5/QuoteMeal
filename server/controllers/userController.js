@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 userController.createUser = async (req, res, next) => {
     try {
-        // console.log('body of request', req.body);
+        console.log('in userController.createUser', req.body)
         const { username, password, firstName, lastName, email } = req.body
         if (username && password) {
             const salt = await bcrypt.genSaltSync(10)
@@ -20,11 +20,18 @@ userController.createUser = async (req, res, next) => {
             console.log(newUser)
             res.locals.newUser = newUser
             // console.log('SUCESSFUL IN CREATE USER, maybe')
-            return next()
-        }
-        next('One of username or password fields is missing')
+            return next();
+        } else return next({
+            log: 'Express error handler caught error in userController.createUser',
+            status: 400,
+            message: { err: 'One of username or password fields is missing' },
+        })
     } catch (err) {
-        next(err)
+        return next({
+            log: 'Express error handler caught error in userController.createUser',
+            status: 400,
+            message: { err: err }
+        })
     }
 }
 

@@ -1,20 +1,49 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateLogin } from '../reducers/loginreducer';
+import { updateUsername, updatePassword, updateConfirmPassword, updateFirstName, updateLastName, updateEmail, updateWrongPassword, clearState } from '../reducers/loginreducer';
 
 
 const SignupForm = (props) => {
+  const dispatch = useDispatch();
   const form = useSelector(state => state.login);
-  const { username, password, confirmPassword, firstName, lastName, email } = form;
+  const { username, password, confirmPassword, firstName, lastName, email, wrongPassword } = form;
 
   const handleChange = (e) => {
     const value = e.target.value;
-    console.log(e.target)
+    const name = e.target.name;
+
+    if (name === 'username') {
+      dispatch(updateUsername(value));
+    }
+    if (name === 'password'){
+      dispatch(updatePassword(value));
+    }
+    if (name === 'confirmPassword'){
+      dispatch(updateConfirmPassword(value));
+    }
+    if (name === 'firstName'){
+      dispatch(updateFirstName(value));
+    }
+    if (name === 'lastName'){
+      dispatch(updateLastName(value));
+    }
+    if(name === 'email'){
+      dispatch(updateEmail(value));
+    }
   }
 
   const handleSubmit = (e) => {
-
-  }
+    if (password !== confirmPassword) {
+      dispatch(updateWrongPassword(true));
+    } else {
+      fetch('/api/user/signup', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, firstName, lastName, email }),
+      });
+      dispatch(clearState())
+    }
+  };
 
   return (
     <div>
@@ -23,6 +52,8 @@ const SignupForm = (props) => {
           Username: <input name="username" value={username} onChange={e => handleChange(e)} />
         </label>
         <br></br>
+        {wrongPassword && 
+        <p style={color = 'red'}>Passwords do not match</p>}
         <label>
           Password: <input name="password" value={password} onChange={e => handleChange(e)} />
         </label>
@@ -43,7 +74,10 @@ const SignupForm = (props) => {
           Email: <input name="email" value={email} onChange={e => handleChange(e)} />
         </label>
         <br></br>
-        <button type="submit">
+        <button type="submit" onClick={e => {
+          e.preventDefault();
+          handleSubmit(e);
+        }}>
           Log in
         </button>
       </form>
