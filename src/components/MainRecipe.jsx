@@ -1,29 +1,35 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 const MainRecipe = (props) => {
-    const user = useSelector((state) => state.user)
-    const { username, recipes } = user
+    const username = useSelector((state) => state.user.username);
+    const recipes = useSelector((state) => state.user.recipes);
 
     async function handleClick(e) {
-        e.preventDefault()
-
-        return fetch('/api', {
-            headers: {
-                Accept: 'application/json',
-                'content-Type': 'application.json',
-            },
-            method: 'PATCH',
-            body: JSON.stringify({
-                username: username,
-                recipe: recipes,
-            }),
-        })
+        try {
+            const result = await fetch('/api', {
+                headers: {
+                    Accept: 'application/json',
+                    'content-Type': 'application.json',
+                },
+                method: 'PATCH',
+                body: JSON.stringify({
+                    username: username,
+                    recipe: recipes,
+                }),
+            });
+            if (result) {
+                
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 
     return (
         <div>
-            {/* <button onClick={ADDTOFAVORITES}>Add to Favorites</button> */}
+            <button onClick={handleClick}>Add to Favorites</button>
         </div>
     )
 }
