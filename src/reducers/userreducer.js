@@ -10,7 +10,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    addRecipe: (state, action) = {
+    addRecipe: (state, action) => {
       state.recipes.push(action.payload)
     }
     //action: (state) = {}
