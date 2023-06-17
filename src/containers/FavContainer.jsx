@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const FavContainer = (props) => {
   const info = useSelector((state) => state.user.recipes);
-  const username = useSelector((state) => state.username);
+  const username = useSelector((state) => state.user.username);
   // const { name, category, region, instructions, image, video, ingredients } = info
   const recipeList = info.map((el, index) => (
     <FavRecipe
