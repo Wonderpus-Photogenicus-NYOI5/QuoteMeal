@@ -55,38 +55,53 @@ const SignupForm = (props) => {
   };
 
   return (
-    <div>
+    <div className='form-control mt-10 sm:mx-auto sm:w-full sm:max-w-sm' id="signupForm">
       <form onSubmit={handleSubmit}>
-        <label>
-          Username: <input name="username" value={username} onChange={e => handleChange(e)} />
-        </label>
-        <br></br>
+      <label className="label">
+        <span className="label-text">Username</span>
+      </label>
+      <label className="input-group ">
+          <input name="username" value={username} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs" />
+      </label>
+
         {wrongPassword && 
-        <p style={{color: 'red'}}>Passwords do not match</p>}
-        <label>
-          Password: <input name="password" value={password} onChange={e => handleChange(e)} />
+          <p style={{ color: 'red' }}>Passwords do not match</p>}
+        
+        <label className="label">
+        <span className="label-text">Password</span>
         </label>
-        <br></br>
-        <label>
-          Confirm Password: <input name="confirmPassword" value={confirmPassword} onChange={e => handleChange(e)} />
+        <label className="input-group ">
+        <input name="password" value={password} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs" />
         </label>
-        <br></br>
-        <label>
-          First Name: <input name="firstName" value={firstName} onChange={e => handleChange(e)} />
+        <label className="label">
+        <span className="label-text">Confirm Password</span>
         </label>
-        <br></br>
-        <label>
-          Last Name: <input name="lastName" value={lastName} onChange={e => handleChange(e)} />
+        <label className="input-group">
+          <input name="confirmPassword" value={confirmPassword} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
         </label>
-        <br></br>
-        <label>
-          Email: <input name="email" value={email} onChange={e => handleChange(e)} />
+        <label className="label">
+        <span className="label-text">First Name</span>
+        </label>
+        <label className="input-group">
+        <input name="firstName" value={firstName} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
+        </label>
+        <label className="label">
+        <span className="label-text">Last Name</span>
+        </label>
+        <label className="input-group">
+          <input name="lastName" value={lastName} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
+        </label>
+        <label className="label">
+        <span className="label-text">Last Name</span>
+        </label>
+        <label className="input-group">
+          <input name="email" value={email} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
         </label>
         <br></br>
         <button type="submit" onClick={e => {
           e.preventDefault();
           handleSubmit(e);
-        }}>
+        }} className="btn btn-primary flex justify-center rounded-md  hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
           Log in
         </button>
       </form>
