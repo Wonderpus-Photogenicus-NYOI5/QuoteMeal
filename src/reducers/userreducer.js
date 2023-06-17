@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     username: '',
     recipes: [{name: "recipe", category: "recipe", region: "recipe", instructions: "recipe", image:"https://www.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg", video: "recipe", ingredients:"recipe" }],
-    currentRecipe: '',
+    currentRecipe: {},
     ingredient: '',
 }
 
@@ -20,11 +20,14 @@ export const userSlice = createSlice({
         },
         updateIngredient: (state, action) => {
             state.ingredient = action.payload;
+        },
+        updateCurrent: (state, action) => {
+            state.currentRecipe = action.payload;
         }
 
         //action: (state) = {}
     },
 })
 
-export const { addRecipe, deleterecipe, updateIngredient } = userSlice.actions;
+export const { addRecipe, deleterecipe, updateIngredient, updateCurrent} = userSlice.actions
 export default userSlice.reducer
