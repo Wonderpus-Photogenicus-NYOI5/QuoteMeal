@@ -1,15 +1,16 @@
 import { Routes, Route } from "react-router-dom"
-import HomeContainer from "./containers/HomeContainer"
-import FavContainer from "./containers/FavContainer"
-import LoginContainer from "./containers/LoginContainer"
-import SignupContainer from "./containers/SignupContainer"
-import Navbar from "./components/Navbar"
+import HomeContainer from "./containers/HomeContainer.jsx"
+import FavContainer from "./containers/FavContainer.jsx"
+import LoginContainer from "./containers/LoginContainer.jsx"
+import SignupContainer from "./containers/SignupContainer.jsx"
+import Navbar from "./components/Navbar.jsx"
 import React from 'react';
 
 
 const App = () => {
   return (
     <div id='appContainer'>
+      <h1>This is a test</h1>
       <Navbar></Navbar>
       <div id='contentContainer'>
         <Routes>

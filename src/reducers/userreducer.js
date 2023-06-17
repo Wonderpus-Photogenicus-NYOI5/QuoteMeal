@@ -8,6 +8,7 @@ const initialState = {
 }
 
 export const userSlice = createSlice({
+<<<<<<< HEAD
     name: 'user',
     initialState,
     reducers: {
@@ -16,6 +17,18 @@ export const userSlice = createSlice({
         },
         //action: (state) = {}
     },
+=======
+  name: 'user',
+  initialState,
+  reducers: {
+    addRecipe: (state, action) => {
+      state.recipes.push(action.payload)
+    }
+    //action: (state) = {}
+  },
+
+
+>>>>>>> dev
 })
 
 //export const { addRecipe, action } = userSlice.actions
