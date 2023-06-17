@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 const FavRecipe = (props) => {
-  return (
-    <div></div>
-  )
+    return (
+        <div>
+            <button onClick={handleClick}> Delete </button>
+        </div>
+    )
 }
 
 export default FavRecipe
