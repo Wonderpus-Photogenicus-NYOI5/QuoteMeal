@@ -36,7 +36,7 @@ const FavRecipe = (props) => {
     ingredientArray[i] = <p> {ingredients[i].amount} {ingredients[i].name} </p>
   }
   return (
-    <div className='card w-2/4 flex flex-col justify-center items-center border-solid border-slate-500 border-2'>
+    <div className='card w-2/5 flex flex-col justify-center items-center border-solid border-slate-500 border-2'>
       <img src={image} className='h-64 w-64 object-cover' />
       <div className='card-body flex flex-col justify-center items-center'>
         <p> {name} </p>
