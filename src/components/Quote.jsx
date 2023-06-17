@@ -2,16 +2,26 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Quote = (props) => {
-    const recipe = useSelector((state) => state.currentRecipe)
+  const recipe = useSelector((state) => state.user.currentRecipe)
+  let recipeExists
+  if (recipe.name) {
+    recipeExists = true
+  } else {
+    recipeExists = false
+  }
 
-    return (
-        <div>
-            <img
-                src="https://zenquotes.io/api/image"
-                alt="Motivational Quote"
-            />
-        </div>
-    )
+  const imgSrc = "https://zenquotes.io/api/image?t=" + new Date().getTime();
+
+  return (
+    <div>
+      {recipeExists &&
+        <img
+          src={imgSrc}
+          alt="Motivational Quote"
+        />
+      }
+    </div>
+  )
 }
 
 export default Quote
