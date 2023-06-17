@@ -7,7 +7,7 @@ import oatmealImage from '../images/happy-oatmeal.png'
 
 const HomeContainer = (props) => {
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center'>
       <h1 className='text-center my-10 text-5xl'> QuoteMeal </h1>
       <img src={oatmealImage} className='m-auto h-60 w-72 mb-8' />
       <RecipeInput />
