@@ -5,7 +5,15 @@ import React from 'react'
 // import {useEffect} from 'react'
 
 const HomeContainer = (props) => {
-    return <div></div>
+    return (
+        <div>
+            <Navbar />
+            <h1> QuoteMeal </h1>
+            <RecipeInput />
+            <Quote />
+            <MainRecipe />
+        </div>
+    )
 }
 
 export default HomeContainer
