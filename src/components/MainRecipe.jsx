@@ -35,12 +35,12 @@ const MainRecipe = (props) => {
 
   return (
     <div className='card w-3/4 flex flex-col justify-center items-center border-solid border-slate-500 border-2'>
-      <img src={image} />
-      <p>{name}</p>
-      <p>{category}</p>
-      <p>{region}</p>
+      <img src={image} className="rounded-lg mt-2" />
+      <p><strong>{name}</strong></p>
+      <p><strong>Category:</strong> {category}</p>
+      <p><strong>Region:</strong> {region}</p>
       {ingredientArray}
-      <p> {instructions}</p>
+      <p className="p-5"> {instructions}</p>
       <button onClick={handleClick} className='btn'>Add to Favorites</button>
     </div>
   )

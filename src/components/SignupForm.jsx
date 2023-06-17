@@ -71,13 +71,13 @@ const SignupForm = (props) => {
         <span className="label-text">Password</span>
         </label>
         <label className="input-group ">
-        <input name="password" value={password} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs" />
+        <input name="password" type="password" value={password} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs" />
         </label>
         <label className="label">
         <span className="label-text">Confirm Password</span>
         </label>
         <label className="input-group">
-          <input name="confirmPassword" value={confirmPassword} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
+          <input name="confirmPassword" type="password" value={confirmPassword} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
         </label>
         <label className="label">
         <span className="label-text">First Name</span>
@@ -92,7 +92,7 @@ const SignupForm = (props) => {
           <input name="lastName" value={lastName} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>
         </label>
         <label className="label">
-        <span className="label-text">Last Name</span>
+        <span className="label-text">Email</span>
         </label>
         <label className="input-group">
           <input name="email" value={email} onChange={e => handleChange(e)} className="input input-bordered input-primary w-full max-w-xs"/>

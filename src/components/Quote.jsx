@@ -17,7 +17,8 @@ const Quote = (props) => {
       {recipeExists &&
         <img
           src={imgSrc}
-          alt="Motivational Quote"
+        alt="Motivational Quote"
+        className = "mb-2"
         />
       }
     </div>

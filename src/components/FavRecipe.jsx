@@ -37,13 +37,13 @@ const FavRecipe = (props) => {
   }
   return (
     <div className='card w-2/5 flex flex-col justify-center items-center border-solid border-slate-500 border-2'>
-      <img src={image} className='h-64 w-64 object-cover' />
+      <img src={image} className='h-64 w-64 object-cover rounded-lg mt-3' />
       <div className='card-body flex flex-col justify-center items-center'>
         <p> {name} </p>
-        <p> {category}</p>
-        <p> {region} </p>
+        <p> <strong> Category:</strong> {category}</p>
+        <p> <strong> Region:</strong>  {region} </p>
         {ingredientArray}
-        <p> {instructions}</p>
+        <p className = "p-5"> {instructions} </p>
         <button onClick={handleClick} className='btn text-center'> Delete </button>
       </div>
     </div>
