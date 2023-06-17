@@ -1,8 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const MainRecipe = (props) => {
+    const user = useSelector((state) => state.user)
+    const { username, recipes } = user
     async function handleClick(e) {
         e.preventDefault()
+
         return fetch('/api', {
             headers: {
                 Accept: 'application/json',
@@ -11,7 +15,7 @@ const MainRecipe = (props) => {
             method: 'PATCH',
             body: JSON.stringify({
                 username: username,
-                recipe: recipe,
+                recipe: recipes,
             }),
         })
     }
