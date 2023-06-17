@@ -11,7 +11,6 @@ const App = () => {
   return (
     // <Test />
     <div id="appContainer" style={{ "data-theme": "luxury" }}>
-      <h1>This is a test</h1>
       <Navbar></Navbar>
       <div id="contentContainer">
         <Routes>
