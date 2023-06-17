@@ -1,14 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { loginUsername, loginPassword, updateLoggedIn, updateNoMatch, clearState } from '../reducers/loginreducer';
-import { setUsername, setRecipes } from '../reducers/userreducer';
+import { loginUsername, loginPassword, updateNoMatch, clearState } from '../reducers/loginreducer';
+import { setUsername, setRecipes, updateLoggedIn } from '../reducers/userreducer';
 
 const LoginForm = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector(state => state.login);
-    const { username, password, loggedIn, noMatch } = user;
+    const { username, password, noMatch } = user;
 
     const handleSubmit = async (e) => {
         if (username === '' || password === '') {
@@ -26,11 +26,13 @@ const LoginForm = (props) => {
             }),
         });
         const data = await res.json();
+        console.log(data.recipes)
         if (!data) {
             dispatch(updateNoMatch(true));
         } else {
             dispatch(setUsername(data.username));
             dispatch(setRecipes(data.recipes));
+            dispatch(updateLoggedIn(true));
             dispatch(clearState());
             return navigate('/');
         }
@@ -49,35 +51,31 @@ const LoginForm = (props) => {
     }
 
     return (
-        <div id="loginForm">
+        <div className='form-control mt-10 sm:mx-auto sm:w-full sm:max-w-sm' id="loginForm">
             {noMatch && 
-            <p style={{color: 'red'}} >Username / Password do not match</p>}
+                <p style={{ color: 'red' }} >Username / Password do not match</p>}
+            
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username:{' '}
-                    <input
-                        name="username"
-                        value={username}
-                        onChange={handleChange}
-                    />
+            <label className="label">
+            <span className="label-text">Username</span>
+            </label>
+            <label className="input-group">
+            <input type="text" placeholder="Username" className="input input-bordered input-primary w-full max-w-xs" name="username" value={username} onChange={handleChange}/>
+            </label>
+
+            <label className="label">
+            <span className="label-text">Password</span>
+            </label>
+            <label className="input-group">
+            <input type="text" placeholder="Password" className="input input-bordered input-primary w-full max-w-xs" name="password" value={password} onChange={handleChange}/>
                 </label>
-                <br></br>
-                <label>
-                    Password:{' '}
-                    <input
-                        name="password"
-                        value={password}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br></br>
-                <button type="submit" onClick={e => {
+                <button className="btn btn-primary flex justify-center rounded-md  hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit" onClick={e => {
                     e.preventDefault();
                     handleSubmit(e)
-                }}>Log in</button>
+                }}>Log In</button>
             </form>
             <p>
-                Don't have an account? Click <Link to="/signup">here</Link> to
+                Don't have an account? <Link className = "link link-primary" to="/signup">Click here</Link> to
                 sign up.
             </p>
         </div>

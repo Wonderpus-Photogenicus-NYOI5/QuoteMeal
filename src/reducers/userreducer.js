@@ -6,6 +6,7 @@ const initialState = {
     recipes: [{name: "recipe", category: "recipe", region: "recipe", instructions: "recipe", image:"https://www.shutterstock.com/image-photo/notepad-your-recipe-herbs-spices-260nw-370298699.jpg", video: "recipe", ingredients:"recipe" }],
     currentRecipe: {},
     ingredient: '',
+    loggedIn: false,
 }
 
 export const userSlice = createSlice({
@@ -29,11 +30,12 @@ export const userSlice = createSlice({
         },
         updateCurrent: (state, action) => {
             state.currentRecipe = action.payload;
-        }
-
-        //action: (state) = {}
+        },
+        updateLoggedIn: (state, action) => {
+            state.loggedIn = action.payload;
+        },
     },
 })
 
-export const { setUsername, setRecipes, addRecipe, deleterecipe, updateIngredient, updateCurrent} = userSlice.actions
+export const { setUsername, setRecipes, addRecipe, deleterecipe, updateIngredient, updateCurrent, updateLoggedIn } = userSlice.actions
 export default userSlice.reducer

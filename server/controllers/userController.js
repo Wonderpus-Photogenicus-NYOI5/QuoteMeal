@@ -35,7 +35,7 @@ userController.createUser = async (req, res, next) => {
 }
 
 userController.addFavRecipe = async (req, res, next) => {
-    // console.log('IN FAV RECIPE');
+    console.log('IN FAV RECIPE', req.body);
     try {
         const { username, recipe } = req.body
         const userAddFav = await User.findOneAndUpdate(
@@ -43,6 +43,7 @@ userController.addFavRecipe = async (req, res, next) => {
             { $push: { favRecipes: recipe } },
             { new: true }
         )
+        console.log(userAddFav);
         res.locals.userAddFav = userAddFav
         return next()
     } catch (err) {
@@ -74,6 +75,7 @@ userController.login = async (req, res, next) => {
         console.log('in userController.login', req.body)
         const { username, password } = req.body
         const result = await User.findOne({ username });
+        console.log(result)
         if (!result) {
            return next('user not found')
         }
