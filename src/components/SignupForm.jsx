@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUsername, updatePassword, updateConfirmPassword, updateFirstName, updateLastName, updateEmail, updateWrongPassword, clearState } from '../reducers/loginreducer';
+import { useNavigate } from 'react-router-dom';
+import { updateUsername, updatePassword, updateConfirmPassword, updateFirstName, updateLastName, updateEmail, updateWrongPassword, clearState } from '../reducers/signupreducer';
 
 
 const SignupForm = (props) => {
   const dispatch = useDispatch();
-  const form = useSelector(state => state.login);
+  const navigate = useNavigate();
+  const form = useSelector(state => state.signup);
   const { username, password, confirmPassword, firstName, lastName, email, wrongPassword } = form;
 
   const handleChange = (e) => {
@@ -32,16 +34,23 @@ const SignupForm = (props) => {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (password !== confirmPassword) {
       dispatch(updateWrongPassword(true));
     } else {
-      fetch('/api/user/signup', {
+      const res = await fetch('/api/user/signup', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password, firstName, lastName, email }),
       });
-      dispatch(clearState())
+      const data = res.json();
+      if (data) {
+        dispatch(clearState())
+        return navigate('/login');
+      } else {
+        dispatch(updateWrongPassword(true));
+        dispatch(clearState())
+      }
     }
   };
 

@@ -16,9 +16,8 @@ userController.createUser = async (req, res, next) => {
                 email,
                 password: bcpassword,
             }
-            const newUser = await User.create(updatedUser)
-            console.log(newUser)
-            res.locals.newUser = newUser
+            const newUser = await User.create(updatedUser);
+            res.locals.newUser = true;
             // console.log('SUCESSFUL IN CREATE USER, maybe')
             return next();
         } else return next({
@@ -70,26 +69,30 @@ userController.deleteRecipe = async (req, res, next) => {
     }
 }
 
-userController.login = async (req, res, next) => {}
-
 userController.login = async (req, res, next) => {
     try {
+        console.log('in userController.login', req.body)
         const { username, password } = req.body
-        const result = await User.findOne({ username })
+        const result = await User.findOne({ username });
         if (!result) {
-            next('user not found')
+           return next('user not found')
         }
         const compare = await bcrypt.compare(password, result.password)
         // console.log('SUCESSFUL LOG IN');
         if (compare) {
-            res.locals.user = result
+            res.locals.user = { 'username': result.username, 'recipes': result.favRecipes };
             return next()
         } else {
-            next('incorrect password')
+            res.locals.user = false;
+            return next()
         }
     } catch (err) {
-        return next(err)
+        return next({
+            log: 'Express error handler caught caught an error in userController.login',
+            status: 400,
+            message: {err: err}
+        })
     }
 }
 
-module.exports = userController
+module.exports = userController;

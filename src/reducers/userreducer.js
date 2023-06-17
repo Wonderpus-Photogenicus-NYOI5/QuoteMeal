@@ -26,5 +26,5 @@ export const userSlice = createSlice({
     },
 })
 
-export const { addRecipe, deleterecipe, updateIngredient} = userSlice.actions
+export const { addRecipe, deleterecipe, updateIngredient } = userSlice.actions;
 export default userSlice.reducer

@@ -1,45 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const initialState = { 
   username: '',
   password: '',
-  confirmPassword: '',
-  firstName: '',
-  lastName: '',
-  email: '',
-  wrongPassword: false,
+  loggedIn: false,
+  noMatch: false,
 }
 
 export const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    updateUsername: (state, action) => {
+    loginUsername: (state, action) => {
       state.username = action.payload;
     },
-    updatePassword: (state, action) => {
+    loginPassword: (state, action) => {
       state.password = action.payload;
     },
-    updateConfirmPassword: (state, action) => {
-      state.confirmPassword = action.payload;
+    updateLoggedIn: (state, action) => {
+      state.loggedIn = action.payload;
     },
-    updateFirstName: (state, action) => {
-      state.firstName = action.payload;
-    },
-    updateLastName: (state, action) => {
-      state.lastName = action.payload;
-    },
-    updateEmail: (state, action) => {
-      state.email = action.payload;
-    },
-    updateWrongPassword: (state, action) => {
-      state.wrongPassword = action.payload;
+    updateNoMatch: (state, action) => {
+      state.noMatch = action.payload;
     },
     clearState: (state, action) => {
       return initialState;
     }
   }
-})
+});
 
-export const { updateUsername, updatePassword, updateConfirmPassword, updateFirstName, updateLastName, updateEmail, updateWrongPassword, clearState } = loginSlice.actions;
+export const { loginUsername, loginPassword, updateLoggedIn, updateNoMatch, clearState } = loginSlice.actions;
 export default loginSlice.reducer;

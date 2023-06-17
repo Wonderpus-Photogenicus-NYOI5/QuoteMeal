@@ -1,32 +1,55 @@
 import { useNavigate, Link } from 'react-router-dom'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { loginUsername, loginPassword, updateLoggedIn, updateNoMatch, clearState } from '../reducers/loginreducer';
 
 const LoginForm = (props) => {
     const dispatch = useDispatch();
-    const username = useSelector(state => state.login.username);
-    const password = useSelector(state => state.login.password);
+    const navigate = useNavigate();
+    const user = useSelector(state => state.login);
+    const { username, password, loggedIn, noMatch } = user;
 
     const handleSubmit = async (e) => {
-        const data = await fetch('/api/user/login', {
+        if (username === '' || password === '') {
+            dispatch(updateNoMatch(true));
+            return;
+        }
+        const res = await fetch('/api/user/login', {
             headers: {
                 Accept: 'application/json',
-                'content-Type': 'application.json',
+                'Content-Type': 'application/json',
             },
             method: 'POST',
             body: JSON.stringify({
-                username: 'Elinor',
-                password: 'password',
+                username, password
             }),
-        })
-        const res = data.json()
-        dispatch()
+        });
+        const data = await res.json();
+        if (!data) {
+            dispatch(updateNoMatch(true));
+        } else {
+            // dispatch userreducer to update user state
+            dispatch(clearState());
+            return navigate('/');
+        }
     }
 
-    const handleChange = (e) => {}
+    const handleChange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+
+        if (name === 'username') {
+        dispatch(loginUsername(value));
+        }
+        if (name === 'password'){
+        dispatch(loginPassword(value));
+        }
+    }
 
     return (
         <div id="loginForm">
+            {noMatch && 
+            <p style={{color: 'red'}} >Username / Password do not match</p>}
             <form onSubmit={handleSubmit}>
                 <label>
                     Username:{' '}
@@ -46,7 +69,10 @@ const LoginForm = (props) => {
                     />
                 </label>
                 <br></br>
-                <button type="submit">Log in</button>
+                <button type="submit" onClick={e => {
+                    e.preventDefault();
+                    handleSubmit(e)
+                }}>Log in</button>
             </form>
             <p>
                 Don't have an account? Click <Link to="/signup">here</Link> to
