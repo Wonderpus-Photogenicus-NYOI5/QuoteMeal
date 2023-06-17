@@ -2,18 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-  array: []
+    array: [],
+    count: 0
 }
 
 export const testSlicer = createSlice({
-  name: 'test',
-  initialState,
-  reducers: {
-    addtoArray: (state, action) => {
-      state.array.push(action)
-    }
-  },
+    name: 'test',
+    initialState,
+    reducers: {
+        addToArray: (state, action) => {
+            state.array = action.payload;
+        },
+        incrementCount: (state, action) => {
+            state.count++;
+        }
+    },
 });
 
-export const { addtoArray } = testSlicer.actions;
+export const { addToArray, incrementCount } = testSlicer.actions;
 export default testSlicer.reducer;
