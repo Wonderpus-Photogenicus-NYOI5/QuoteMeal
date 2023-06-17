@@ -6,10 +6,11 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 
 // ********Controller********
-const userController = require('./controller/userController');
+// const userController = require('./controllers/userController');
 
 // ********Mongo connection********
-const mongoURI = require(path.join(__dirname, 'mongoURI.js'));
+// const mongoURI = require(path.join(__dirname, 'mongoURI.js'));
+const mongoURI = 'mongodb+srv://QuoteMeal:QuoteMeal@quotemeal.wchgiln.mongodb.net/?retryWrites=true&w=majority'
 const db = mongoose.connection;
 
 mongoose.connect(mongoURI, {
@@ -37,23 +38,23 @@ app.get('/api/test', (req, res) => {
 });
 
 // ********Routes********
-// login or signup
-app.post('/api/user', ** ENTER MIDDLEWARE HERE **, (req, res) => {
-  console.log('request received');
-  return res.status(200).json();
-});
+// // login or signup
+// app.post('/api/user', ** ENTER MIDDLEWARE HERE **, (req, res) => {
+//   console.log('request received');
+//   return res.status(200).json();
+// });
 
-// update fave recipes
-app.patch('/api', ** ENTER MIDDLEWARE HERE **, (req, res) => {
-  console.log('request received')
-  return res.status(200).json();
-});
+// // update fave recipes
+// app.patch('/api', ** ENTER MIDDLEWARE HERE **, (req, res) => {
+//   console.log('request received')
+//   return res.status(200).json();
+// });
 
-// delete a recipe
-app.delete('/api', ** ENTER MIDDLWARE HERE **, (req, res) => {
-  console.log('request received')
-  return res.status(200).json();
-});
+// // delete a recipe
+// app.delete('/api', ** ENTER MIDDLWARE HERE **, (req, res) => {
+//   console.log('request received')
+//   return res.status(200).json();
+// });
 
 
 app.get("/", (req, res) => {

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoArray, count } from '../reducers/testreducer'
+import { addToArray, incrementCount } from '../reducers/testreducer'
 
 const Test = () => {
   const dispatch = useDispatch();
@@ -11,14 +11,14 @@ const Test = () => {
     const loadList = async () => {
       const data = await fetch('/api/test');
       const parsed = await data.json();
-      await dispatch(addtoArray(parsed));
+      await dispatch(addToArray(parsed));
     }
     loadList();
   }, [dispatch]);
 
   const testArray = array.map(el => <li>{el}</li>);
   const onClick = () => {
-    dispatch(count({}))
+    dispatch(incrementCount())
   }
   return (
     <>
@@ -32,6 +32,7 @@ const Test = () => {
         {testArray}
       </ul>
     </>
-
   )
 }
+
+export default Test;

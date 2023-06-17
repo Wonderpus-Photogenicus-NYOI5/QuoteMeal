@@ -10,14 +10,14 @@ export const testSlicer = createSlice({
     name: 'test',
     initialState,
     reducers: {
-        addtoArray: (state, action) => {
+        addToArray: (state, action) => {
             state.array = action.payload;
         },
-        count: (state, action) => {
+        incrementCount: (state, action) => {
             state.count++;
         }
     },
 });
 
-export const { addtoArray, count } = testSlicer.actions;
+export const { addToArray, incrementCount } = testSlicer.actions;
 export default testSlicer.reducer;
