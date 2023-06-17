@@ -1,9 +1,11 @@
 import { useNavigate, Link } from 'react-router-dom'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
 const LoginForm = (props) => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const username = useSelector(state => state.login.username);
+    const password = useSelector(state => state.login.password);
 
     const handleSubmit = async (e) => {
         const data = await fetch('/api/user/login', {
@@ -47,7 +49,7 @@ const LoginForm = (props) => {
                 <button type="submit">Log in</button>
             </form>
             <p>
-                Don't have an account? Click <Link to="/sign-up">here</Link> to
+                Don't have an account? Click <Link to="/signup">here</Link> to
                 sign up.
             </p>
         </div>

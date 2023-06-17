@@ -5,10 +5,10 @@ import testreducer from './reducers/testreducer.js'
 
 const store = configureStore({
     reducer: {
-        // login: loginreducer,
+        login: loginreducer,
         user: userreducer,
         test: testreducer,
     },
 })
 
-export default store
+export default store;
