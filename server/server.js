@@ -6,11 +6,11 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 
 // ********Controller********
-// const userController = require('./controllers/userController');
+const userController = require('./controllers/userController');
 
 // ********Mongo connection********
-// const mongoURI = require(path.join(__dirname, 'mongoURI.js'));
-const mongoURI = 'mongodb+srv://QuoteMeal:QuoteMeal@quotemeal.wchgiln.mongodb.net/?retryWrites=true&w=majority'
+const mongoURI = 'mongodb+srv://QuoteMeal:QuoteMeal@quotemeal.wchgiln.mongodb.net/?retryWrites=true&w=majority';
+  // require(path.join(__dirname, 'mongoURI.js'));
 const db = mongoose.connection;
 
 mongoose.connect(mongoURI, {
@@ -38,23 +38,28 @@ app.get('/api/test', (req, res) => {
 });
 
 // ********Routes********
-// // login or signup
-// app.post('/api/user', ** ENTER MIDDLEWARE HERE **, (req, res) => {
-//   console.log('request received');
-//   return res.status(200).json();
-// });
+// login or signup
+app.post('/api/user/login', userController.login, (req, res) => {
+  console.log('request received');
+  return res.status(200).send(res.locals.user);
+});
 
-// // update fave recipes
-// app.patch('/api', ** ENTER MIDDLEWARE HERE **, (req, res) => {
-//   console.log('request received')
-//   return res.status(200).json();
-// });
+app.post('/api/user/signup', userController.createUser, (req, res) => {
+  console.log('request received');
+  return res.status(200).send(res.locals.newUser);
+});
 
-// // delete a recipe
-// app.delete('/api', ** ENTER MIDDLWARE HERE **, (req, res) => {
-//   console.log('request received')
-//   return res.status(200).json();
-// });
+// update fave recipes
+app.patch('/api', userController.addFavRecipe, (req, res) => {
+  console.log('request received')
+  return res.status(200).json(res.locals.userAddFav);
+});
+
+// delete a recipe
+app.delete('/api', userController.deleteRecipe, (req, res) => {
+  console.log('request received')
+  return res.status(200).json(res.locals.deletedRecipe);
+});
 
 
 app.get("/", (req, res) => {
