@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { deleterecipe } from '../reducers/userreducer.js';
 
 const FavRecipe = (props) => {
     const { name, category, region, instructions, image, video, ingredients, index, dispatch } = props
