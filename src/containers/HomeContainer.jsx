@@ -1,6 +1,6 @@
-import RecipeInput from "../components/RecipeInput"
-import MainRecipe from "../components/MainRecipe"
-import Quote from "../components/Quote"
+import RecipeInput from "../components/RecipeInput.jsx"
+import MainRecipe from "../components/MainRecipe.jsx"
+import Quote from "../components/Quote.jsx"
 import React from 'react';
 
 
