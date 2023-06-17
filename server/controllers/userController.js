@@ -55,11 +55,11 @@ userController.deleteRecipe = async (req, res, next) => {
     const { username, index } = req.body
     await User.findOneAndUpdate(
       { username: username },
-      { $unset: { [`favRecipes.${index}`]: 1 } }
+      { '$unset': { [`favRecipes.${index}`]: 1 } }
     )
     const deletedRecipe = await User.findOneAndUpdate(
       { username: username },
-      { $pull: { favRecipes: null } },
+      { '$pull': { favRecipes: null } },
       { new: true }
     )
     res.locals.deletedRecipe = deletedRecipe
