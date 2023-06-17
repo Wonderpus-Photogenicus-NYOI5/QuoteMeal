@@ -32,7 +32,7 @@ const FavRecipe = (props) => {
     }
   }
   return (
-    <div className='card w-50 flex flex-column justify-center items-center'>
+    <div className='card w-50 flex flex-col justify-center items-center'>
       <img src={image} className='h-64 w-64 object-cover' />
       <div className='card-body flex'>
         <p> {name} </p>
