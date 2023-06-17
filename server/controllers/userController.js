@@ -1,12 +1,20 @@
 const User = require('./models/User');
 const userController = {}
+const bcrypt = require('bcrypt');
 
-userController.createUser = (req, res, next) => {
+
+userController.createUser = async (req, res, next) => {
   try {
-    const { props } = req.body;
-    const newUser = User.create(props);
-    res.locals.newUser = newUser;
-    return next()
+    const { username, password } = req.body;
+    if (username && password) {
+      const salt = await bcrypt.genSaltSync(10);
+      const bcpassword = await bcrypt.hashSync(password, salt);
+      const updatedUser = {username, bcpassword}
+      const newUser = User.create(updatedUser);
+      res.locals.newUser = newUser;
+      return next();
+    }
+    next("One of username or password fields is missing");
   }
   catch (err) {
     next(err);
@@ -52,7 +60,24 @@ userController.deleteRecipe = async (req, res, next) => {
 
 
 userController.login = async (req, res, next) => {
-
+  try {
+    const { username, password } = req.body;
+    const result = await User.findOne({ username });
+    if (!result) {
+      next("user not found");
+    }
+    const compare = await bcrypt.compare(password, result.password);
+    if (compare) {
+      res.locals.user = result;
+      return next();
+    }
+    else {
+      next("incorrect password");
+    }
+  }
+  catch (err){
+    return next(err);
+  }
 }
 
 module.exports = userController;

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userreducer from './reducer/userreducer.js';
 import loginreducer from './reducer/loginreducer.js';
-import testreducerfrom './reducer/testreducer.js';
+import testreducer from './reducer/testreducer.js';
 
 
 const store = configureStore({

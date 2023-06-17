@@ -38,21 +38,26 @@ app.get('/api/test', (req, res) => {
 
 // ********Routes********
 // login or signup
-app.post('/api/user', ** ENTER MIDDLEWARE HERE **, (req, res) => {
+app.post('/api/user/login', userController.login, (req, res) => {
   console.log('request received');
-  return res.status(200).json();
+  return res.status(200).json(res.locals.login);
+});
+
+app.post('/api/user/signup', userController.createUser, (req, res) => {
+  console.log('request received');
+  return res.status(200).json(res.locals.newUser);
 });
 
 // update fave recipes
-app.patch('/api', ** ENTER MIDDLEWARE HERE **, (req, res) => {
+app.patch('/api', userController.addFavRecipe, (req, res) => {
   console.log('request received')
-  return res.status(200).json();
+  return res.status(200).json(res.locals.userAddFav);
 });
 
 // delete a recipe
-app.delete('/api', ** ENTER MIDDLWARE HERE **, (req, res) => {
+app.delete('/api', userController.deleteRecipe, (req, res) => {
   console.log('request received')
-  return res.status(200).json();
+  return res.status(200).json(res.locals.deletedRecipe);
 });
 
 
