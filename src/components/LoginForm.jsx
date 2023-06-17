@@ -67,7 +67,7 @@ const LoginForm = (props) => {
             <span className="label-text">Password</span>
             </label>
             <label className="input-group">
-            <input type="text" placeholder="Password" className="input input-bordered input-primary w-full max-w-xs" name="password" value={password} onChange={handleChange}/>
+            <input type="password" placeholder="Password" className="input input-bordered input-primary w-full max-w-xs" name="password" value={password} onChange={handleChange}/>
                 </label>
                 <button className="btn btn-primary flex justify-center rounded-md  hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit" onClick={e => {
                     e.preventDefault();

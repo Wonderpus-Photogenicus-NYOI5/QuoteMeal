@@ -72,14 +72,14 @@ const RecipeInput = (props) => {
   return (
     <div className='flex flex-col w-3/4 justify-center items-center m-auto'>
       <input
-        className='mb-10'
+        className="input input-bordered input-primary w-full max-w-xs"
         type="text"
         id="ingredient"
         placeholder="What you got?"
         onChange={handleChange}
       >
       </input>
-      <button onClick={handleClick} className='btn'>Find a recipe</button>
+      <button onClick={handleClick} className="btn btn-primary flex justify-center rounded-md  hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Find a recipe</button>
     </div>
   )
 }

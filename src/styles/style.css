@@ -10,6 +10,11 @@ nav {
 button {
   margin: 8px 0;
 }
+
+h1{
+  font-family: 'Shrikhand', cursive;
+
+}
 /* .form-control {
   display: flex;
   justify-content: center;
